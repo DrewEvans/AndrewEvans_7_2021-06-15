@@ -1,4 +1,6 @@
-import { recipes } from "./recipes.js";
-import { randomInt, generateCard } from "./test.js";
+import { recipes, uniqueIngredientList } from "./recipes.js";
+import { generateCard } from "./generateCard.js";
+
+uniqueIngredientList(recipes);
 
 generateCard(recipes);

@@ -22,5 +22,10 @@
 	"homepage": "https://github.com/DrewEvans/AndrewEvans_7_2021-06-15#readme",
 	"devDependencies": {
 		"eslint": "^7.28.0"
+	},
+	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^1.2.35",
+		"@fortawesome/free-regular-svg-icons": "^5.15.3",
+		"@fortawesome/free-solid-svg-icons": "^5.15.3"
 	}
 }

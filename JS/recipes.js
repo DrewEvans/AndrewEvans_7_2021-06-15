@@ -20,7 +20,7 @@ const recipes = [
 			},
 			{
 				ingredient: "Sucre",
-				quantite: 30,
+				quantity: 30,
 				unit: "grammes",
 			},
 			{
@@ -53,7 +53,7 @@ const recipes = [
 			},
 			{
 				ingredient: "Carotte",
-				quantite: 1,
+				quantity: 1,
 			},
 			{
 				ingredient: "Citron Vert",
@@ -1774,4 +1774,22 @@ const recipes = [
 	},
 ];
 
-export { recipes };
+const uniqueIngredientList = (recipes) => {
+	let allIngredients = [];
+
+	recipes.map((recipe) => {
+		allIngredients = recipe.ingredients;
+
+		allIngredients.forEach((ingredient) => {
+			allIngredients = [...allIngredients, ingredient.ingredient];
+			console.log(allIngredients);
+		});
+
+		const uniqueIngredients = [...new Set(allIngredients)];
+		console.log(uniqueIngredients);
+	});
+
+	console.log(allIngredients);
+};
+
+export { recipes, uniqueIngredientList };
