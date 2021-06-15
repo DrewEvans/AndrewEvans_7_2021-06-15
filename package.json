@@ -1,25 +1,26 @@
 {
-  "name": "les-petits-plats",
-  "version": "1.0.0",
-  "description": "search algorithm project",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DrewEvans/AndrewEvans_7_2021-06-15.git"
-  },
-  "keywords": [
-    "demo"
-  ],
-  "author": "Drew Evans <@DrewEvans github>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DrewEvans/AndrewEvans_7_2021-06-15/issues"
-  },
-  "homepage": "https://github.com/DrewEvans/AndrewEvans_7_2021-06-15#readme",
-  "devDependencies": {
-    "eslint": "^7.28.0"
-  }
+	"name": "les-petits-plats",
+	"version": "1.0.0",
+	"description": "search algorithm project",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DrewEvans/AndrewEvans_7_2021-06-15.git"
+	},
+	"keywords": [
+		"demo"
+	],
+	"author": "Drew Evans <@DrewEvans github>",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/DrewEvans/AndrewEvans_7_2021-06-15/issues"
+	},
+	"homepage": "https://github.com/DrewEvans/AndrewEvans_7_2021-06-15#readme",
+	"devDependencies": {
+		"eslint": "^7.28.0"
+	}
 }
