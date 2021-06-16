@@ -1,6 +1,13 @@
-import { recipes, uniqueIngredientList } from "./recipes.js";
+import {
+	recipes,
+	uniqueIngredientList,
+	uniqueUtensils,
+	uniqueAppliances,
+} from "./recipes.js";
 import { generateCard } from "./generateCard.js";
 
-uniqueIngredientList(recipes);
+// uniqueIngredientList(recipes);
+// uniqueUtensils(recipes);
+// uniqueAppliances(recipes);
 
 generateCard(recipes);

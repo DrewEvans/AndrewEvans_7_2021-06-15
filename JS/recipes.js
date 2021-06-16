@@ -1774,22 +1774,33 @@ const recipes = [
 	},
 ];
 
-const uniqueIngredientList = (recipes) => {
-	let allIngredients = [];
+const uniqueIngredientList = (arr) => {
+	let ingredients = [];
 
-	recipes.map((recipe) => {
-		allIngredients = recipe.ingredients;
-
-		allIngredients.forEach((ingredient) => {
-			allIngredients = [...allIngredients, ingredient.ingredient];
-			console.log(allIngredients);
-		});
-
-		const uniqueIngredients = [...new Set(allIngredients)];
-		console.log(uniqueIngredients);
+	arr.forEach((arr) => {
+		ingredients = [...ingredients, ...arr.ingredients];
 	});
 
-	console.log(allIngredients);
+	let unique = [...new Set(ingredients.map((item) => item.ingredient))];
+
+	return unique;
 };
 
-export { recipes, uniqueIngredientList };
+const uniqueUtensils = (arr) => {
+	let ustensils = [];
+
+	arr.map((recipe) => {
+		ustensils = [...ustensils, ...new Set(recipe.ustensils)];
+	});
+
+	let unique = [...new Set(ustensils)];
+
+	return unique;
+};
+const uniqueAppliances = (arr) => {
+	let unique = [...new Set(arr.map((item) => item.appliance))];
+
+	return unique;
+};
+
+export { recipes, uniqueIngredientList, uniqueUtensils, uniqueAppliances };
