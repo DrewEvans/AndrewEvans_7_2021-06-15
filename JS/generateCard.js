@@ -24,6 +24,8 @@ const generateCard = (arr) => {
 			card.classList.add("m-3");
 
 			let imageContainer = document.createElement("img");
+			imageContainer.src =
+				"https://www.publicdomainpictures.net/pictures/60000/nahled/grey-gradient-background.jpg";
 			imageContainer.classList.add("card-img-top");
 			card.appendChild(imageContainer);
 
