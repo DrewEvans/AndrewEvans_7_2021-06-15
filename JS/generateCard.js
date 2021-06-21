@@ -43,15 +43,27 @@ const generateCard = (arr) => {
 			recipeTitle.appendChild(title);
 			cardHeader.appendChild(recipeTitle);
 
+			let clockIcon = document.createElement("i");
+			// clockIcon.classList.add("fa fa-clock-o");
+
+			recipeTitle.after(clockIcon);
+
 			let duration = document.createElement("p");
 			duration.classList.add("duration-container");
 			duration.classList.add("col");
-			let durationText = document.createTextNode(`clock ${time} min`);
+			let durationText = document.createTextNode(`${time} min`);
 			duration.appendChild(durationText);
-			recipeTitle.after(duration);
+			clockIcon.after(duration);
+
+			let bodyContainer = document.createElement("div");
+			bodyContainer.classList.add("card-body");
+			card.appendChild(bodyContainer);
+			cardHeader.after(bodyContainer);
 
 			let ingredientsContainer = document.createElement("div");
 			ingredientsContainer.classList.add("ingredients-container");
+			bodyContainer.appendChild(ingredientsContainer);
+
 			let unorderedList = document.createElement("ul");
 			unorderedList.classList.add("list-unstyled");
 			ingredientsContainer.appendChild(unorderedList);
@@ -83,10 +95,10 @@ const generateCard = (arr) => {
 				}
 			});
 
-			cardHeader.after(ingredientsContainer);
-
-			let instructions = document.createElement("div");
+			let instructions = document.createElement("p");
 			instructions.classList.add("description");
+			instructions.classList.add("text-break");
+			instructions.classList.add("text-wrap");
 			instructions.classList.add("text-truncate");
 			let instructionText = document.createTextNode(description);
 			instructions.appendChild(instructionText);
