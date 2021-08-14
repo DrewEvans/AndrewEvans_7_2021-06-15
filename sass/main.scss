@@ -128,33 +128,34 @@ body {
 		box-shadow: none;
 	}
 
-	// .item-container {
-	// 	display: flex;
-	// 	flex-direction: column;
+	.item-container {
+		display: flex;
+		flex-direction: column;
 
-	// 	ul {
-	// 		margin: 0;
-	// 		padding: 0;
-	// 		padding-top: 0.1em;
-	// 		width: 170px;
-	// 		list-style-type: none;
+		ul {
+			margin: 0;
+			padding: 0;
+			padding-top: 0.1em;
+			width: 170px;
+			list-style-type: none;
 
-	.tag-item {
-		color: white;
-		width: 162px;
-		font-size: 1em;
-		padding: 0.35em 0.55em;
-		font-weight: 400;
-		list-style: none;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		overflow: hidden;
-		transition: background-color 150ms;
+			.tag-item {
+				color: white;
+				width: 162px;
+				font-size: 1em;
+				padding: 0.35em 0.55em;
+				font-weight: 400;
+				list-style: none;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				transition: background-color 150ms;
+			}
+			:hover {
+				background-color: rgba(207, 207, 207, 0.288);
+			}
+		}
 	}
-	:hover {
-		background-color: rgba(207, 207, 207, 0.288);
-	}
-	// }
 }
 
 .appliances-dropdown {

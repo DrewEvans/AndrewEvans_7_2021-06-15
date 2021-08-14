@@ -17,7 +17,6 @@ const searchBar = document.querySelector(".form-control");
 
 let recipesToDisplay = [];
 
-//render cards from on search
 //add event listener on the searchbar
 searchBar.addEventListener("keyup", (e) => {
 	//get input from searchbar
@@ -49,11 +48,9 @@ searchBar.addEventListener("keyup", (e) => {
 
 for (let i = 0; i < dropdowns.length; i++) {
 	dropdowns[i].addEventListener("click", (e) => {
-		let results = [];
 		if (e.target.className === "ingredients-dropdown") {
 			console.log("you found me");
 		}
-
 		if (e.target.className === "tag-item ingredients") {
 			tagContainer.insertAdjacentHTML(
 				"afterbegin",

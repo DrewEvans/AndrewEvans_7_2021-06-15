@@ -7,9 +7,12 @@ const dropdownFilter = (element, id, array) => {
 
 		if (isActive) {
 			let searchBox = document.createElement("div");
+			let itemContainer = document.createElement("ul");
 			searchBox.classList.add(`search-container-${id}`);
+			searchBox.classList.add(`item-container`);
 
 			element.appendChild(searchBox);
+			searchBox.appendChild(itemContainer);
 
 			array.forEach((item) => {
 				let listItem = document.createElement("li");
@@ -21,7 +24,7 @@ const dropdownFilter = (element, id, array) => {
 				id === 3 ? listItem.classList.add("appliance") : null;
 
 				listItem.appendChild(itemName);
-				searchBox.appendChild(listItem);
+				itemContainer.appendChild(listItem);
 			});
 		} else {
 			let box = document.querySelector(`.search-container-${id}`);
