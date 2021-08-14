@@ -1,3 +1,175 @@
+body {
+	font-family: "Lato";
+	margin: 0.5em 3.5em;
+}
+
+//Logo
+
+.logo-container {
+	display: flex;
+	justify-content: center;
+	margin: 2em 0;
+}
+
+//searchbar
+
+.search-container {
+	display: flex;
+	justify-content: center;
+
+	input {
+		background-color: #e7e7e7;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+
+		border: none;
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+		padding: 10px;
+		height: 30px;
+		width: 89%;
+	}
+	button {
+		font-size: 24px;
+
+		background-color: #e7e7e7;
+		border: none;
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		padding: 10px;
+		cursor: pointer;
+	}
+}
+
+//filter tags
+
+.tag-container {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	margin: 2em;
+
+	.tag {
+		color: white;
+		font-weight: 600;
+		font-size: 0.9em;
+
+		display: flex;
+		align-items: center;
+		margin: 0.35em;
+
+		height: 30px;
+
+		border-radius: 5px;
+
+		p {
+			padding: 0.35em;
+		}
+		span {
+			padding: 0.5em;
+		}
+	}
+
+	.ingredient-tag {
+		background-color: #3282f7;
+	}
+	.ustensil-tag {
+		background-color: #ed6454;
+	}
+	.appliance-tag {
+		background-color: #68d9a4;
+	}
+}
+
+//dropdown Search
+
+.button-container {
+	display: flex;
+	justify-content: flex-start;
+	margin-left: 0em;
+}
+
+.dropdown-btn {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	background-color: #3282f7;
+	border-radius: 5px;
+	width: 180px;
+	margin: 2em 4em;
+	cursor: pointer;
+
+	input {
+		justify-self: flex-start;
+		font-size: 1em;
+		font-weight: 500;
+		padding-left: 0.5em;
+		color: white;
+		width: 150px;
+		height: 45px;
+		border: none;
+		background-color: #3282f7;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	span {
+		color: white;
+	}
+	::placeholder {
+		font-family: "lato";
+		font-size: 1em;
+		font-weight: 500;
+		padding-left: 0.25em;
+		color: white;
+	}
+	:focus {
+		outline: none;
+		box-shadow: none;
+	}
+
+	// .item-container {
+	// 	display: flex;
+	// 	flex-direction: column;
+
+	// 	ul {
+	// 		margin: 0;
+	// 		padding: 0;
+	// 		padding-top: 0.1em;
+	// 		width: 170px;
+	// 		list-style-type: none;
+
+	.tag-item {
+		color: white;
+		width: 162px;
+		font-size: 1em;
+		padding: 0.35em 0.55em;
+		font-weight: 400;
+		list-style: none;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		transition: background-color 150ms;
+	}
+	:hover {
+		background-color: rgba(207, 207, 207, 0.288);
+	}
+	// }
+}
+
+.appliances-dropdown {
+	background-color: #68d9a4;
+	input {
+		background-color: #68d9a4;
+	}
+}
+.utensils-dropdown {
+	background-color: #ed6454;
+	input {
+		background-color: #ed6454;
+	}
+}
+
 #card-container {
 	margin: 0 2em;
 

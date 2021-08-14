@@ -1,4 +1,4 @@
-const openFilter = (element, id, array) => {
+const dropdownFilter = (element, id, array) => {
 	let isActive = false;
 
 	element.onclick = () => {
@@ -8,11 +8,17 @@ const openFilter = (element, id, array) => {
 		if (isActive) {
 			let searchBox = document.createElement("div");
 			searchBox.classList.add(`search-container-${id}`);
+
 			element.appendChild(searchBox);
 
 			array.forEach((item) => {
 				let listItem = document.createElement("li");
 				let itemName = document.createTextNode(item);
+
+				listItem.classList.add("tag-item");
+				id === 1 ? listItem.classList.add("ingredients") : null;
+				id === 2 ? listItem.classList.add("ustensil") : null;
+				id === 3 ? listItem.classList.add("appliance") : null;
 
 				listItem.appendChild(itemName);
 				searchBox.appendChild(listItem);
@@ -22,8 +28,6 @@ const openFilter = (element, id, array) => {
 			box.remove();
 		}
 	};
-
-	return console.log(isActive);
 };
 
-export default openFilter;
+export default dropdownFilter;
