@@ -1,0 +1,68 @@
+#card-container {
+  margin: 0 2em;
+}
+
+#card-container .card {
+  background-color: #e7e7e7;
+  margin: 1.5em;
+  padding: 0;
+  height: 380px;
+  width: 360px;
+}
+
+#card-container .card .img-block {
+  background-color: #c7bebe;
+  height: 170px;
+}
+
+#card-container .card .card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.25em;
+}
+
+#card-container .card .card-body .card-title {
+  font-weight: 400;
+  font-size: 1.2em;
+  width: 70%;
+}
+
+#card-container .card .card-body p {
+  padding-right: 1em;
+  align-self: flex-start;
+}
+
+#card-container .card .card-body p .clock-icon {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: transparent;
+}
+
+#card-container .card .details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 0.25em;
+  font-size: 0.8em;
+}
+
+#card-container .card .details .ingredients-container ul {
+  padding: 0 0.25em;
+}
+
+#card-container .card .details .ingredients-container ul li {
+  line-height: 1.7;
+  list-style: none;
+}
+
+#card-container .card .details .description {
+  display: -webkit-box;
+  max-width: 400px;
+  height: 120px;
+  -webkit-line-clamp: 7;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  width: 50%;
+  padding-right: 0.2em;
+}
