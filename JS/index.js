@@ -10,10 +10,15 @@ import dropdownFilter from "./dropdownFilter.js";
 const ingredientsDropDown = document.querySelector(".ingredients-dropdown");
 const utensilsDropDown = document.querySelector(".utensils-dropdown");
 const appliancesDropDown = document.querySelector(".appliances-dropdown");
+const searchBar = document.querySelector(".form-control");
+
 const dropdowns = document.querySelectorAll("#dropdownFilter");
+
 const cardContainer = document.getElementById("card-container");
 const tagContainer = document.getElementById("tagContainer");
-const searchBar = document.querySelector(".form-control");
+const closeCross = document.querySelectorAll("closeCross");
+
+console.log(closeCross)
 
 let recipesToDisplay = [];
 
@@ -48,15 +53,13 @@ searchBar.addEventListener("keyup", (e) => {
 
 for (let i = 0; i < dropdowns.length; i++) {
 	dropdowns[i].addEventListener("click", (e) => {
-		if (e.target.className === "ingredients-dropdown") {
-			console.log("you found me");
-		}
+		
 		if (e.target.className === "tag-item ingredients") {
 			tagContainer.insertAdjacentHTML(
 				"afterbegin",
 				`<div class="ingredient-tag tag">
 					<p class="item-text">${e.target.innerText}</p>
-					<i class="far fa-times-circle closeTag"></i>
+					<span class="far fa-times-circle closeCross"></span>
 				</div>`
 			);
 		}
@@ -65,7 +68,7 @@ for (let i = 0; i < dropdowns.length; i++) {
 				"afterbegin",
 				`<div class="ustensil-tag tag">
 					<p class="item-text">${e.target.innerText}</p>
-					<i class="far fa-times-circle closeTag"></i>
+					<span class="far fa-times-circle closeCross"></span>
 				</div>`
 			);
 		}
@@ -74,12 +77,21 @@ for (let i = 0; i < dropdowns.length; i++) {
 				"afterbegin",
 				`<div class="appliance-tag tag">
 					<p class="item-text">${e.target.innerText}</p>
-					<i class="far fa-times-circle closeTag"></i>
+					<span class="far fa-times-circle closeCross"></span>
 				</div>`
 			);
 		}
 	});
 }
+
+document.addEventListener("click", (e)=>{
+	
+	if(e.target.className === "far fa-times-circle closeCross"){
+		console.log(e.target.parentNode)
+		e.target.parentNode.remove()
+	}
+})
+
 
 //fetch json data
 const loadRecipes = async () => {
