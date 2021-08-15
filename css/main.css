@@ -123,20 +123,7 @@ body {
   box-shadow: none;
 }
 
-.dropdown-btn .item-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdown-btn .item-container ul {
-  margin: 0;
-  padding: 0;
-  padding-top: 0.1em;
-  width: 170px;
-  list-style-type: none;
-}
-
-.dropdown-btn .item-container ul .tag-item {
+.dropdown-btn .tag-item {
   color: white;
   width: 162px;
   font-size: 1em;
@@ -149,7 +136,7 @@ body {
   transition: background-color 150ms;
 }
 
-.dropdown-btn .item-container ul :hover {
+.dropdown-btn :hover {
   background-color: rgba(207, 207, 207, 0.288);
 }
 

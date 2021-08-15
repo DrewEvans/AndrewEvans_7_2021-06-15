@@ -17,10 +17,12 @@ const dropdowns = document.querySelectorAll("#dropdownFilter");
 const cardContainer = document.getElementById("card-container");
 const tagContainer = document.getElementById("tagContainer");
 const closeCross = document.querySelectorAll("closeCross");
+const tags = document.getElementById("tagItem");
 
-console.log(closeCross)
+console.log(tags)
 
 let recipesToDisplay = [];
+let filterTags = []; 
 
 //add event listener on the searchbar
 searchBar.addEventListener("keyup", (e) => {
@@ -51,44 +53,68 @@ searchBar.addEventListener("keyup", (e) => {
 	dropdownFilter(appliancesDropDown, 3, uniqueAppliances(filteredRecipes));
 });
 
+
 for (let i = 0; i < dropdowns.length; i++) {
 	dropdowns[i].addEventListener("click", (e) => {
 		
 		if (e.target.className === "tag-item ingredients") {
+			filterTags.push({
+				name: e.target.innerText,
+				type: "ingredient",
+			})
 			tagContainer.insertAdjacentHTML(
 				"afterbegin",
 				`<div class="ingredient-tag tag">
-					<p class="item-text">${e.target.innerText}</p>
+					<p class="item-text" id="tagItem">${e.target.innerText}</p>
 					<span class="far fa-times-circle closeCross"></span>
 				</div>`
 			);
 		}
+
 		if (e.target.className === "tag-item ustensil") {
+			filterTags.push({
+				name: e.target.innerText,
+				type: "ustensil",
+			})
 			tagContainer.insertAdjacentHTML(
 				"afterbegin",
 				`<div class="ustensil-tag tag">
-					<p class="item-text">${e.target.innerText}</p>
+					<p class="item-text" id="tagItem">${e.target.innerText}</p>
 					<span class="far fa-times-circle closeCross"></span>
 				</div>`
 			);
 		}
+
 		if (e.target.className === "tag-item appliance") {
+			filterTags.push({
+				name: e.target.innerText,
+				type: "appliance",
+			})
 			tagContainer.insertAdjacentHTML(
 				"afterbegin",
 				`<div class="appliance-tag tag">
-					<p class="item-text">${e.target.innerText}</p>
+					<p class="item-text" id="tagItem">${e.target.innerText}</p>
 					<span class="far fa-times-circle closeCross"></span>
 				</div>`
 			);
 		}
+
+		console.log(e.target.classList)
+
 	});
 }
+
+
 
 document.addEventListener("click", (e)=>{
 	
 	if(e.target.className === "far fa-times-circle closeCross"){
 		console.log(e.target.parentNode)
 		e.target.parentNode.remove()
+	}
+
+	if(e.target.id == "tagItem"){
+		console.log("name")
 	}
 })
 
@@ -127,7 +153,7 @@ const createCard = (recipes) => {
 			<div class="card-body">
 				<h2 class="card-title">${name}</h2>
 				<p class="duration">
-					<span class="clock-icon">TEMPO</span>${" "}
+					<span class="fas fa-clock"></span>${" "}
 					${time}min
 				</p>
 			</div>
