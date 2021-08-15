@@ -19,17 +19,19 @@ const tagContainer = document.getElementById("tagContainer");
 const closeCross = document.querySelectorAll("closeCross");
 const tags = document.getElementById("tagItem");
 
-console.log(tags)
-
+//empty arrays
 let recipesToDisplay = [];
+let recipesFiltered = [];
 let filterTags = []; 
+
+
 
 //add event listener on the searchbar
 searchBar.addEventListener("keyup", (e) => {
 	//get input from searchbar
 	let searchTerm = e.target.value;
 	//filter objects based on searched input
-	const filteredRecipes = recipesToDisplay.filter((el) => {
+	recipesFiltered = recipesToDisplay.filter((el) => {
 		return (
 			el.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
 			el.appliance.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -42,15 +44,15 @@ searchBar.addEventListener("keyup", (e) => {
 		);
 	});
 	//return new cards based on input
-	createCard(filteredRecipes);
+	createCard(recipesFiltered);
 	//return new filtered lists in the dropdowns
 	dropdownFilter(
 		ingredientsDropDown,
 		1,
-		uniqueIngredientList(filteredRecipes)
+		uniqueIngredientList(recipesFiltered)
 	);
-	dropdownFilter(utensilsDropDown, 2, uniqueUtensils(filteredRecipes));
-	dropdownFilter(appliancesDropDown, 3, uniqueAppliances(filteredRecipes));
+	dropdownFilter(utensilsDropDown, 2, uniqueUtensils(recipesFiltered));
+	dropdownFilter(appliancesDropDown, 3, uniqueAppliances(recipesFiltered));
 });
 
 
@@ -64,7 +66,7 @@ for (let i = 0; i < dropdowns.length; i++) {
 			})
 			tagContainer.insertAdjacentHTML(
 				"afterbegin",
-				`<div class="ingredient-tag tag">
+				`<div class="ingredient-tag tag" id="filterTag">
 					<p class="item-text" id="tagItem">${e.target.innerText}</p>
 					<span class="far fa-times-circle closeCross"></span>
 				</div>`
@@ -78,7 +80,7 @@ for (let i = 0; i < dropdowns.length; i++) {
 			})
 			tagContainer.insertAdjacentHTML(
 				"afterbegin",
-				`<div class="ustensil-tag tag">
+				`<div class="ustensil-tag tag" id="filterTag">
 					<p class="item-text" id="tagItem">${e.target.innerText}</p>
 					<span class="far fa-times-circle closeCross"></span>
 				</div>`
@@ -92,32 +94,43 @@ for (let i = 0; i < dropdowns.length; i++) {
 			})
 			tagContainer.insertAdjacentHTML(
 				"afterbegin",
-				`<div class="appliance-tag tag">
+				`<div class="appliance-tag tag" id="filterTag">
 					<p class="item-text" id="tagItem">${e.target.innerText}</p>
 					<span class="far fa-times-circle closeCross"></span>
 				</div>`
 			);
 		}
-
-		console.log(e.target.classList)
-
 	});
 }
 
-
-
 document.addEventListener("click", (e)=>{
-	
+
 	if(e.target.className === "far fa-times-circle closeCross"){
-		console.log(e.target.parentNode)
+		let term = e.target.previousElementSibling.innerText;
+		 filterTags = arrayRemove(filterTags, term)
+		}
+		
+	if(e.target.className === "far fa-times-circle closeCross"){
 		e.target.parentNode.remove()
 	}
 
-	if(e.target.id == "tagItem"){
-		console.log("name")
-	}
+	if(e.target.tagName === "LI"){
+		console.log(recipesFiltered)
+		const filteredRecipes = [];
+
+	} 
+	
+	console.log(filterTags)
+
 })
 
+
+
+const arrayRemove = (arr, value) => { 
+	return arr.filter(function(ele){ 
+		return ele.name != value; 
+	});
+}
 
 //fetch json data
 const loadRecipes = async () => {
