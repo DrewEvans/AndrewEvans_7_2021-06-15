@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
+		<!-- <link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
 			rel="stylesheet"
 			integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
@@ -14,61 +14,93 @@
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
 			crossorigin="anonymous"
+		></script> -->
+		<script
+			src="https://kit.fontawesome.com/c47fc4ef25.js"
+			crossorigin="anonymous"
 		></script>
-		<script src="https://kit.fontawesome.com/c47fc4ef25.js" crossorigin="anonymous"></script>		
 		<link
-		href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap"
-		rel="stylesheet"
-	/>
-		<link rel="stylesheet" href="../css/main.css">
+			href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="../css/main.css" />
 		<title>Les Petits Plats</title>
 	</head>
 	<body>
 		<nav>
-			<div class="container-fluid d-flex justify-content-center">
+			<div
+				class="
+					container-fluid
+					d-flex
+					justify-content-center
+					logo-container
+				"
+			>
 				<img
 					src="./assets/logo.svg"
 					alt="les-petits-plats.logo"
 					class=""
 				/>
 			</div>
-			<div class="container-sm my-5 input-group search-bar" >
+			<div class="container-sm my-5 input-group search-bar">
 				<input
 					type="text"
 					class="form-control"
 					placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
 					aria-label="Search Bar"
 				/>
-				<span class="input-group-text bi bi-search" id="basic-addon1">
-					<i class="fas fa-searchcd.."></i>
-				</span>
+				<button>
+					<i class="fas fa-search"></i>
+				</button>
 			</div>
 			<ul class="tag-container" id="tagContainer"></ul>
-	<div class="container button-container">
-		<div class="ingredients-dropdown dropdown-btn" id="dropdownFilter">
-			<input class="ingredients-dropdown "placeholder="Ingrédients">
-			<span class="fas fa-angle-down"></span>
-		</div>
-		<div class="appliances-dropdown dropdown-btn" id="dropdownFilter">
-			<input class="appliance-dropdown" placeholder="Appareil">
-			<span class="fas fa-angle-down"></span>
-		</div>
-		<div class="utensils-dropdown dropdown-btn" id="dropdownFilter">
-			<input class="ustensil-dropdown"placeholder="Ustensil">
-			<span class="fas fa-angle-down"></span>
-		</div>
-		<div class="testdrop-btn" id="testDrop">
-			<input class="test-search"placeholder="ingre">
-			<span class="fas fa-angle-down"></span>
-			<ul class="item-container"id="testContainer"></ul>
-		</div>
+			<div class="button-container">
+				<div
+					class="ingredients-dropdown dropdown-btn"
+					id="ingredientDropdown"
+				>
+					<input
+						class="ingredient-search"
+						placeholder="Ingredients"
+					/>
+					<span class="fas fa-angle-down"></span>
+					<ul class="item-container" id="ingItemContainer"></ul>
+				</div>
+			</div>
+			<div class="button-container">
+				<div
+					class="appliances-dropdown dropdown-btn"
+					id="applianceDropdown"
+				>
+					<input class="appliance-search" placeholder="Appareil" />
+					<span class="fas fa-angle-down"></span>
+					<ul class="item-container" id="appItemContainer"></ul>
+				</div>
+			</div>
+			<div class="button-container">
+				<div
+					class="utensils-dropdown dropdown-btn"
+					id="ustensilDropdown"
+				>
+					<input class="ustensil-search" placeholder="Ustensiles" />
+					<span class="fas fa-angle-down"></span>
+					<ul class="item-container" id="ustItemContainer"></ul>
+				</div>
+			</div>
 		</nav>
 		<main>
-			<div class="container-fluid justify-content-around d-flex row flex-wrap my-5" id="card-container">
-			</div>
-            <script type="module" src="../js/index.js"></script>
-        </main>
+			<div
+				class="
+					container-fluid
+					justify-content-around
+					d-flex
+					row
+					flex-wrap
+					my-5
+				"
+				id="card-container"
+			></div>
+			<script type="module" src="../js/index.js"></script>
+		</main>
 	</body>
 </html>
-
-

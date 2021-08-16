@@ -1,6 +1,6 @@
-const ingredientDropdown = (array) => {
-	const element = document.getElementById("ingredientDropdown");
-	const itemContainer = document.getElementById("ingItemContainer");
+const applianceDropdown = (array) => {
+	const element = document.getElementById("applianceDropdown");
+	const itemContainer = document.getElementById("appItemContainer");
 	let isActive = false;
 
 	element.addEventListener("click", () => {
@@ -9,7 +9,7 @@ const ingredientDropdown = (array) => {
 		if (isActive) {
 			const htmlString = array
 				.map((el) => {
-					return `<li class="tag-item ingredients">${el}</li>`;
+					return `<li class="tag-item appliance">${el}</li>`;
 				})
 				.join("");
 			itemContainer.innerHTML = htmlString;
@@ -32,11 +32,11 @@ const ingredientDropdown = (array) => {
 				}
 			})
 			.map((el) => {
-				return `<li class="tag-item ingredients">${el}</li>`;
+				return `<li class="tag-item appliance">${el}</li>`;
 			})
 			.join("");
 		itemContainer.innerHTML = htmlString;
 	});
 };
 
-export default ingredientDropdown;
+export default applianceDropdown;

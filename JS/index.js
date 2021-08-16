@@ -9,6 +9,8 @@ import { tagSearch } from "../functions/tagSearch.js";
 import { searchData } from "../functions/searchAlgorithim.js";
 import { renderCards } from "./generateCard.js";
 import ingredientDropdown from "./ingredientDropdown.js";
+import applianceDropdown from "./applianceDropdown.js";
+import ustensilDropdown from "./ustensilDropdown.js";
 
 //DOM Elements
 const ingredientsDropDown = document.querySelector(".ingredients-dropdown");
@@ -16,7 +18,7 @@ const utensilsDropDown = document.querySelector(".utensils-dropdown");
 const appliancesDropDown = document.querySelector(".appliances-dropdown");
 const searchBar = document.querySelector(".form-control");
 
-const dropdowns = document.querySelectorAll("#dropdownFilter");
+const dropdowns = document.querySelectorAll(".dropdown-btn");
 
 const cardContainer = document.getElementById("card-container");
 const tagContainer = document.getElementById("tagContainer");
@@ -27,17 +29,14 @@ const tags = document.getElementById("tagItem");
 let searchTerm = "";
 let recipesToDisplay = [];
 let recipesFiltered = [];
-let filterTags = []; 
-
-ingredientDropdown(uniqueIngredientList(recipesFiltered))
+let filterTags = [];
 
 //add event listener on the searchbar
 searchBar.addEventListener("keyup", (e) => {
-	
 	searchTerm = e.target.value;
 
 	recipesFiltered = searchData(recipesToDisplay, searchTerm);
-	
+
 	createCard(recipesFiltered);
 	//return new filtered lists in the dropdowns
 	dropdownFilter(
@@ -49,15 +48,13 @@ searchBar.addEventListener("keyup", (e) => {
 	dropdownFilter(appliancesDropDown, 3, uniqueAppliances(recipesFiltered));
 });
 
-
 for (let i = 0; i < dropdowns.length; i++) {
 	dropdowns[i].addEventListener("click", (e) => {
-		
 		if (e.target.className === "tag-item ingredients") {
 			filterTags.push({
 				name: e.target.innerText,
 				type: "ingredient",
-			})
+			});
 			tagContainer.insertAdjacentHTML(
 				"afterbegin",
 				`<div class="ingredient-tag tag" id="filterTag">
@@ -71,7 +68,7 @@ for (let i = 0; i < dropdowns.length; i++) {
 			filterTags.push({
 				name: e.target.innerText,
 				type: "ustensil",
-			})
+			});
 			tagContainer.insertAdjacentHTML(
 				"afterbegin",
 				`<div class="ustensil-tag tag" id="filterTag">
@@ -85,7 +82,7 @@ for (let i = 0; i < dropdowns.length; i++) {
 			filterTags.push({
 				name: e.target.innerText,
 				type: "appliance",
-			})
+			});
 			tagContainer.insertAdjacentHTML(
 				"afterbegin",
 				`<div class="appliance-tag tag" id="filterTag">
@@ -97,86 +94,70 @@ for (let i = 0; i < dropdowns.length; i++) {
 	});
 }
 
-document.addEventListener("click", (e)=>{
-
-	if(e.target.className === "far fa-times-circle closeCross"){
+document.addEventListener("click", (e) => {
+	if (e.target.className === "far fa-times-circle closeCross") {
 		let term = e.target.previousElementSibling.innerText;
-		e.target.parentNode.remove()
-		filterTags = arrayRemove(filterTags, term)
-		
-		if(!searchTerm && !filterTags.length){
-			console.log("no prim search and no tags")
+		e.target.parentNode.remove();
+		filterTags = arrayRemove(filterTags, term);
+
+		if (!searchTerm && !filterTags.length) {
+			console.log("no prim search and no tags");
 			loadRecipes();
 		}
-		if(!!searchTerm && !filterTags.length){
-			recipesFiltered = searchData(recipesToDisplay, searchTerm)
-			createCard(recipesFiltered)
-			renderDropdowns();
-			console.log("prim search and no tags")
-		}
-		if(!searchTerm && !!filterTags.length){
-			console.log(" no prim search and tags")
-			recipesFiltered = tagSearch(recipesToDisplay, filterTags)
-			createCard(recipesFiltered)
-			renderDropdowns();
-		}
-		if(!!searchTerm && !!filterTags.length){
-			
+		if (!!searchTerm && !filterTags.length) {
 			recipesFiltered = searchData(recipesToDisplay, searchTerm);
-			recipesFiltered = tagSearch(recipesFiltered, filterTags)
-
-			createCard(recipesFiltered)
+			createCard(recipesFiltered);
 			renderDropdowns();
-			console.log(" prim search and tags")
+			console.log("prim search and no tags");
 		}
+		if (!searchTerm && !!filterTags.length) {
+			console.log(" no prim search and tags");
+			recipesFiltered = tagSearch(recipesToDisplay, filterTags);
+			createCard(recipesFiltered);
+			renderDropdowns();
+		}
+		if (!!searchTerm && !!filterTags.length) {
+			recipesFiltered = searchData(recipesToDisplay, searchTerm);
+			recipesFiltered = tagSearch(recipesFiltered, filterTags);
 
-
+			createCard(recipesFiltered);
+			renderDropdowns();
+			console.log(" prim search and tags");
+		}
 	}
 
-	
-
-	if(e.target.tagName === "LI" && !searchTerm && filterTags.length <= 1){
-		
-		recipesFiltered = tagSearch(recipesToDisplay, filterTags)
-		console.log("added tag, searchbar not added")
+	if (e.target.tagName === "LI" && !searchTerm && filterTags.length <= 1) {
+		recipesFiltered = tagSearch(recipesToDisplay, filterTags);
+		console.log("added tag, searchbar not added");
 		createCard(recipesFiltered);
 		renderDropdowns();
 	}
 
-	if(e.target.tagName === "LI" && !searchTerm && filterTags.length >= 2 ){
-		
-		recipesFiltered = tagSearch(recipesFiltered, filterTags)
-		console.log("added  another tag, searchbar not added")
+	if (e.target.tagName === "LI" && !searchTerm && filterTags.length >= 2) {
+		recipesFiltered = tagSearch(recipesFiltered, filterTags);
+		console.log("added  another tag, searchbar not added");
 		createCard(recipesFiltered);
 		renderDropdowns();
-
 	}
-	if(e.target.tagName === "LI" && !!searchTerm ){
-		
-		recipesFiltered = tagSearch(recipesFiltered, filterTags)
-		console.log("added tag, searchbar filtered added")
+	if (e.target.tagName === "LI" && !!searchTerm) {
+		recipesFiltered = tagSearch(recipesFiltered, filterTags);
+		console.log("added tag, searchbar filtered added");
 		createCard(recipesFiltered);
 		renderDropdowns();
-
 	}
-})
+});
 
-const arrayRemove = (arr, value) => { 
-	return arr.filter(function(ele){ 
-		return ele.name != value; 
+const arrayRemove = (arr, value) => {
+	return arr.filter(function (ele) {
+		return ele.name != value;
 	});
-}
+};
 
 const renderDropdowns = () => {
-	dropdownFilter(
-		ingredientsDropDown,
-		1,
-		uniqueIngredientList(recipesFiltered)
-	);
-	dropdownFilter(utensilsDropDown, 2, uniqueUtensils(recipesFiltered));
-	dropdownFilter(appliancesDropDown, 3, uniqueAppliances(recipesFiltered));
-}
-
+	ingredientDropdown(uniqueIngredientList(recipesFiltered));
+	applianceDropdown(uniqueAppliances(recipesFiltered));
+	ustensilDropdown(uniqueUtensils(recipesFiltered));
+};
 
 //fetch json data
 const loadRecipes = async () => {
@@ -184,18 +165,10 @@ const loadRecipes = async () => {
 		const res = await fetch("/public/data.json");
 		recipesToDisplay = await res.json();
 		createCard(recipesToDisplay);
-		dropdownFilter(
-			ingredientsDropDown,
-			1,
-			uniqueIngredientList(recipesToDisplay)
-		);
-		dropdownFilter(utensilsDropDown, 2, uniqueUtensils(recipesToDisplay));
-		dropdownFilter(
-			appliancesDropDown,
-			3,
-			uniqueAppliances(recipesToDisplay)
-		);
-		ingredientDropdown(uniqueIngredientList(recipesToDisplay))
+
+		ingredientDropdown(uniqueIngredientList(recipesToDisplay));
+		applianceDropdown(uniqueAppliances(recipesToDisplay));
+		ustensilDropdown(uniqueUtensils(recipesToDisplay));
 	} catch (err) {
 		console.error(err);
 	}
@@ -223,13 +196,11 @@ const createCard = (recipes) => {
 						${ingredients
 							.map(
 								(x) =>
-									`<p><span class="bolder">${
-										x.ingredient
-									}:</span> ${x.quantity}${
+									`<li>${x.ingredient}: ${x.quantity}${
 										x.unit === undefined
 											? " unités"
 											: x.unit
-									}</p>`
+									}</li>`
 							)
 							.join("")}
 					</ul>

@@ -13,7 +13,7 @@ body {
 
 //searchbar
 
-.search-container {
+.search-bar {
 	display: flex;
 	justify-content: center;
 
@@ -84,9 +84,19 @@ body {
 //dropdown Search
 
 .button-container {
-	display: flex;
-	justify-content: flex-start;
-	margin-left: 0em;
+	display: inline-block;
+	-webkit-flex-direction: row;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	-webkit-box-pack: flex start;
+	-webkit-justify-content: flex start;
+	-ms-flex-pack: flex start;
+	justify-content: flex start;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-top: 0em;
+	z-index: 1000;
 }
 
 .dropdown-btn {
@@ -99,61 +109,62 @@ body {
 	margin: 2em 4em;
 	cursor: pointer;
 
-		input {
-			justify-self: flex-start;
-			font-size: 1em;
-			font-weight: 500;
-			padding-left: 0.5em;
-			color: white;
-			width: 150px;
-			height: 45px;
-			border: none;
-			background-color: #3282f7;
-			border-radius: 5px;
-			cursor: pointer;
-		}
-		span {
-			color: white;
-		}
-		::placeholder {
-			font-family: "lato";
-			font-size: 1em;
-			font-weight: 500;
-			padding-left: 0.25em;
-			color: white;
-		}
-		:focus {
-			outline: none;
-			box-shadow: none;
-		}
+	input {
+		justify-self: flex-start;
+		font-size: 1.1em;
+		font-weight: 500;
+		padding-top: 1em;
+		color: white;
+		width: 150px;
+		height: 25px;
+		border: none;
+		background-color: #3282f7;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	span {
+		position: relative;
+		height: 14px;
+		width: 14px;
+		left: 145px;
+		bottom: 22px;
+		color: white;
+	}
+	::placeholder {
+		font-family: "lato";
+		font-size: 1em;
+		font-weight: 500;
+		padding-left: 0.25em;
+		color: white;
+	}
+	:focus {
+		outline: none;
+		box-shadow: none;
+	}
+}
 
-			.tag-container {
-				display: flex;
-				flex-direction: column;
+.item-container {
+	display: block;
+	margin: 0;
+	padding: 0;
+	padding-top: 0.1em;
+	width: 170px;
+	list-style-type: none;
 
-				ul {
-					margin: 0;
-					padding: 0;
-					padding-top: 0.1em;
-					width: 170px;
-					list-style-type: none;
-
-			.tag-item {
-				color: white;
-				width: 162px;
-				font-size: 1em;
-				padding: 0.35em 0.55em;
-				font-weight: 400;
-				list-style: none;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				overflow: hidden;
-				transition: background-color 150ms;
-			}
-			:hover {
-				background-color: rgba(207, 207, 207, 0.288);
-			}
-		}
+	.tag-item {
+		color: white;
+		width: 162px;
+		font-size: 1em;
+		padding: 0.35em 0.55em;
+		font-weight: 400;
+		list-style: none;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		transition: background-color 150ms;
+	}
+	:hover {
+		background-color: rgba(207, 207, 207, 0.288);
 	}
 }
 
@@ -171,15 +182,25 @@ body {
 }
 
 #card-container {
-	margin: 0 2em;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	justify-content: space-around;
 
 	.card {
 		background-color: #e7e7e7;
-
-		margin: 1.5em;
+		margin: 2em;
 		padding: 0;
-		height: 380px;
-		width: 360px;
+		height: 410px;
+		width: 375px;
 
 		.img-block {
 			background-color: #c7bebe;
@@ -193,7 +214,7 @@ body {
 			.card-title {
 				font-weight: 400;
 				font-size: 1.2em;
-				width: 70%;
+				width: 75%;
 			}
 			p {
 				padding-right: 1em;
@@ -208,11 +229,13 @@ body {
 		.details {
 			display: flex;
 			justify-content: space-between;
-			align-items: flex-start;
+			align-items: baseline;
 			padding: 0 0.25em;
 			font-size: 0.8em;
 
 			.ingredients-container {
+				margin-bottom: 2px;
+
 				ul {
 					padding: 0 0.25em;
 					li {
@@ -226,7 +249,7 @@ body {
 				display: -webkit-box;
 				max-width: 400px;
 				height: 120px;
-				-webkit-line-clamp: 7;
+				-webkit-line-clamp: 6;
 				-webkit-box-orient: vertical;
 				overflow: hidden;
 				text-overflow: ellipsis;

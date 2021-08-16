@@ -3,26 +3,18 @@ const dropdownFilter = (element, id, array) => {
 	let results = [];
 	let filteredList = array;
 
-
-	filteredList = element.addEventListener("keyup", (e)=>{
+	filteredList = element.addEventListener("keyup", (e) => {
 		let searchTerm = e.target.value;
-		
-		filteredList = array.filter((el)=>{
+
+		filteredList = array.filter((el) => {
 			if (searchTerm == "" || searchTerm == null || undefined) {
 				return el;
-			} else if (
-				el
-					.toLowerCase()
-					.includes(searchTerm.toLowerCase())
-			) {
-				results.push(el)
-				
+			} else if (el.toLowerCase().includes(searchTerm.toLowerCase())) {
+				results.push(el);
 			}
-		})
-		return results
-	})
-
-console.log(results)
+		});
+		return results;
+	});
 
 	element.onclick = () => {
 		element.classList.toggle("active");
