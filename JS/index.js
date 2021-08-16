@@ -35,17 +35,15 @@ let filterTags = [];
 searchBar.addEventListener("keyup", (e) => {
 	searchTerm = e.target.value;
 
-	recipesFiltered = searchData(recipesToDisplay, searchTerm);
+	if (searchTerm.length >= 3) {
+		recipesFiltered = searchData(recipesToDisplay, searchTerm);
 
-	createCard(recipesFiltered);
-	//return new filtered lists in the dropdowns
-	dropdownFilter(
-		ingredientsDropDown,
-		1,
-		uniqueIngredientList(recipesFiltered)
-	);
-	dropdownFilter(utensilsDropDown, 2, uniqueUtensils(recipesFiltered));
-	dropdownFilter(appliancesDropDown, 3, uniqueAppliances(recipesFiltered));
+		createCard(recipesFiltered);
+		//return new filtered lists in the dropdowns
+		renderDropdowns();
+	} else {
+		loadRecipes();
+	}
 });
 
 for (let i = 0; i < dropdowns.length; i++) {
