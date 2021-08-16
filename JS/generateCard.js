@@ -1,7 +1,7 @@
-const createCard = (recipes) => {
-	const htmlString = recipes
-		.map((recipe) => {
-			const { id, name, ingredients, time, description } = recipe;
+const renderCards = (array, node) => {
+	const htmlString = array
+		.map((el) => {
+			const { id, name, ingredients, time, description } = el;
 
 			return `
 			<div key=${id} class="card">
@@ -36,6 +36,6 @@ const createCard = (recipes) => {
 					`;
 		})
 		.join("");
-	cardContainer.innerHTML = htmlString;
+	node.innerHTML = htmlString;
 };
-export { createCard };
+export { renderCards };

@@ -7,6 +7,8 @@ import {
 import dropdownFilter from "./dropdownFilter.js";
 import { tagSearch } from "../functions/tagSearch.js";
 import { searchData } from "../functions/searchAlgorithim.js";
+import { renderCards } from "./generateCard.js";
+import ingredientDropdown from "./ingredientDropdown.js";
 
 //DOM Elements
 const ingredientsDropDown = document.querySelector(".ingredients-dropdown");
@@ -27,7 +29,7 @@ let recipesToDisplay = [];
 let recipesFiltered = [];
 let filterTags = []; 
 
-
+ingredientDropdown(uniqueIngredientList(recipesFiltered))
 
 //add event listener on the searchbar
 searchBar.addEventListener("keyup", (e) => {
@@ -193,6 +195,7 @@ const loadRecipes = async () => {
 			3,
 			uniqueAppliances(recipesToDisplay)
 		);
+		ingredientDropdown(uniqueIngredientList(recipesToDisplay))
 	} catch (err) {
 		console.error(err);
 	}

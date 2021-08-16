@@ -1,5 +1,28 @@
 const dropdownFilter = (element, id, array) => {
 	let isActive = false;
+	let results = [];
+	let filteredList = array;
+
+
+	filteredList = element.addEventListener("keyup", (e)=>{
+		let searchTerm = e.target.value;
+		
+		filteredList = array.filter((el)=>{
+			if (searchTerm == "" || searchTerm == null || undefined) {
+				return el;
+			} else if (
+				el
+					.toLowerCase()
+					.includes(searchTerm.toLowerCase())
+			) {
+				results.push(el)
+				
+			}
+		})
+		return results
+	})
+
+console.log(results)
 
 	element.onclick = () => {
 		element.classList.toggle("active");
