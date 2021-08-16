@@ -5,6 +5,8 @@ import {
 	uniqueAppliances,
 } from "./recipes.js";
 import dropdownFilter from "./dropdownFilter.js";
+import { tagSearch } from "../functions/tagSearch.js";
+import { searchData } from "../functions/searchAlgorithim.js";
 
 //DOM Elements
 const ingredientsDropDown = document.querySelector(".ingredients-dropdown");
@@ -20,6 +22,7 @@ const closeCross = document.querySelectorAll("closeCross");
 const tags = document.getElementById("tagItem");
 
 //empty arrays
+let searchTerm = "";
 let recipesToDisplay = [];
 let recipesFiltered = [];
 let filterTags = []; 
@@ -28,22 +31,11 @@ let filterTags = [];
 
 //add event listener on the searchbar
 searchBar.addEventListener("keyup", (e) => {
-	//get input from searchbar
-	let searchTerm = e.target.value;
-	//filter objects based on searched input
-	recipesFiltered = recipesToDisplay.filter((el) => {
-		return (
-			el.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			el.appliance.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			el.ustensils.some((ustensil) =>
-				ustensil.toLowerCase().includes(searchTerm.toLowerCase())
-			) ||
-			el.ingredients.filter((obj) =>
-				obj.ingredient.toLowerCase().includes(searchTerm.toLowerCase())
-			).length > 0
-		);
-	});
-	//return new cards based on input
+	
+	searchTerm = e.target.value;
+
+	recipesFiltered = searchData(recipesToDisplay, searchTerm);
+	
 	createCard(recipesFiltered);
 	//return new filtered lists in the dropdowns
 	dropdownFilter(
@@ -107,58 +99,64 @@ document.addEventListener("click", (e)=>{
 
 	if(e.target.className === "far fa-times-circle closeCross"){
 		let term = e.target.previousElementSibling.innerText;
-		 filterTags = arrayRemove(filterTags, term)
-		}
-		
-	if(e.target.className === "far fa-times-circle closeCross"){
 		e.target.parentNode.remove()
+		filterTags = arrayRemove(filterTags, term)
+		
+		if(!searchTerm && !filterTags.length){
+			console.log("no prim search and no tags")
+			loadRecipes();
+		}
+		if(!!searchTerm && !filterTags.length){
+			recipesFiltered = searchData(recipesToDisplay, searchTerm)
+			createCard(recipesFiltered)
+			renderDropdowns();
+			console.log("prim search and no tags")
+		}
+		if(!searchTerm && !!filterTags.length){
+			console.log(" no prim search and tags")
+			recipesFiltered = tagSearch(recipesToDisplay, filterTags)
+			createCard(recipesFiltered)
+			renderDropdowns();
+		}
+		if(!!searchTerm && !!filterTags.length){
+			
+			recipesFiltered = searchData(recipesToDisplay, searchTerm);
+			recipesFiltered = tagSearch(recipesFiltered, filterTags)
+
+			createCard(recipesFiltered)
+			renderDropdowns();
+			console.log(" prim search and tags")
+		}
+
+
 	}
 
-	if(e.target.tagName === "LI" && !recipesFiltered.length ){
-		
-		console.log("added tag, searchbar not added")
-		
-		let ingredientTags = [];
-		let ustensilTags = [];
-		let applianceTags = [];
-
-		
-		Array.from(filterTags).forEach((el)=>{
-			const {type, name} = el;
-			
-			
-			type === "ingredient" ? ((ingredientTags = name), console.log("ing")) : null;
-			type === "utensil" ? (ustensilTags = name) : null;
-			type === "appliance" ? (applianceTags = name) : null;
-		})
 	
-		if(ingredientTags.length){
-			recipesFiltered = recipesToDisplay.filter((el)=>{
-				return (
-					el.ingredients.filter((obj) =>
-						obj.ingredient.toLowerCase().includes(ingredientTags.toLowerCase())
-					).length > 0
-				);
-			})
-		}
-		if(applianceTags.length){
-			recipesFiltered = recipesToDisplay.filter((el)=>{
-				return (
-					el.appliance.toLowerCase().includes(applianceTags.toLowerCase())
-				);
-			})
-		}
-		if(ustensilTags.length){
-			recipesFiltered = recipesToDisplay.filter((el)=>{
-				return el.ustensils.some((ustensil) =>
-				ustensil.toLowerCase().includes(ustensilTags.toLowerCase())
-			)
-			})
-		}
 
+	if(e.target.tagName === "LI" && !searchTerm && filterTags.length <= 1){
+		
+		recipesFiltered = tagSearch(recipesToDisplay, filterTags)
+		console.log("added tag, searchbar not added")
 		createCard(recipesFiltered);
+		renderDropdowns();
+	}
 
-	} 
+	if(e.target.tagName === "LI" && !searchTerm && filterTags.length >= 2 ){
+		
+		recipesFiltered = tagSearch(recipesFiltered, filterTags)
+		console.log("added  another tag, searchbar not added")
+		createCard(recipesFiltered);
+		renderDropdowns();
+
+	}
+	if(e.target.tagName === "LI" && !!searchTerm ){
+		
+		recipesFiltered = tagSearch(recipesFiltered, filterTags)
+		console.log("added tag, searchbar filtered added")
+		createCard(recipesFiltered);
+		renderDropdowns();
+
+	}
 })
 
 const arrayRemove = (arr, value) => { 
@@ -166,6 +164,17 @@ const arrayRemove = (arr, value) => {
 		return ele.name != value; 
 	});
 }
+
+const renderDropdowns = () => {
+	dropdownFilter(
+		ingredientsDropDown,
+		1,
+		uniqueIngredientList(recipesFiltered)
+	);
+	dropdownFilter(utensilsDropDown, 2, uniqueUtensils(recipesFiltered));
+	dropdownFilter(appliancesDropDown, 3, uniqueAppliances(recipesFiltered));
+}
+
 
 //fetch json data
 const loadRecipes = async () => {

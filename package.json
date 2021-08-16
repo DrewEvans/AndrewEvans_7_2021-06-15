@@ -22,7 +22,8 @@
 	},
 	"homepage": "https://github.com/DrewEvans/AndrewEvans_7_2021-06-15#readme",
 	"devDependencies": {
-		"eslint": "^7.28.0"
+		"eslint": "^7.28.0",
+		"prettier": "2.3.2"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^1.2.35",

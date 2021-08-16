@@ -43,7 +43,6 @@ body {
 }
 
 //filter tags
-
 .tag-container {
 	display: flex;
 	justify-content: flex-start;
@@ -100,61 +99,62 @@ body {
 	margin: 2em 4em;
 	cursor: pointer;
 
-	input {
-		justify-self: flex-start;
-		font-size: 1em;
-		font-weight: 500;
-		padding-left: 0.5em;
-		color: white;
-		width: 150px;
-		height: 45px;
-		border: none;
-		background-color: #3282f7;
-		border-radius: 5px;
-		cursor: pointer;
-	}
-	span {
-		color: white;
-	}
-	::placeholder {
-		font-family: "lato";
-		font-size: 1em;
-		font-weight: 500;
-		padding-left: 0.25em;
-		color: white;
-	}
-	:focus {
-		outline: none;
-		box-shadow: none;
-	}
+		input {
+			justify-self: flex-start;
+			font-size: 1em;
+			font-weight: 500;
+			padding-left: 0.5em;
+			color: white;
+			width: 150px;
+			height: 45px;
+			border: none;
+			background-color: #3282f7;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		span {
+			color: white;
+		}
+		::placeholder {
+			font-family: "lato";
+			font-size: 1em;
+			font-weight: 500;
+			padding-left: 0.25em;
+			color: white;
+		}
+		:focus {
+			outline: none;
+			box-shadow: none;
+		}
 
-	.tag-container {
-		display: flex;
-		flex-direction: column;
+			.tag-container {
+				display: flex;
+				flex-direction: column;
 
-		ul {
-			margin: 0;
-			padding: 0;
-			padding-top: 0.1em;
-			width: 170px;
-			list-style-type: none;
+				ul {
+					margin: 0;
+					padding: 0;
+					padding-top: 0.1em;
+					width: 170px;
+					list-style-type: none;
 
-	.tag-item {
-		color: white;
-		width: 162px;
-		font-size: 1em;
-		padding: 0.35em 0.55em;
-		font-weight: 400;
-		list-style: none;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		overflow: hidden;
-		transition: background-color 150ms;
+			.tag-item {
+				color: white;
+				width: 162px;
+				font-size: 1em;
+				padding: 0.35em 0.55em;
+				font-weight: 400;
+				list-style: none;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				transition: background-color 150ms;
+			}
+			:hover {
+				background-color: rgba(207, 207, 207, 0.288);
+			}
+		}
 	}
-	:hover {
-		background-color: rgba(207, 207, 207, 0.288);
-	}
-	// }
 }
 
 .appliances-dropdown {
