@@ -1,19 +1,38 @@
-const searchData = (array, keyword) => {
+const searchData = (array, key) => {
 	let results = [];
+	let newList = [];
+	key = key.toLowerCase();
 
-	results = array.filter((el) => {
-		return (
-			el.name.toLowerCase().includes(keyword.toLowerCase()) ||
-			el.appliance.toLowerCase().includes(keyword.toLowerCase()) ||
-			el.ustensils.some((ustensil) =>
-				ustensil.toLowerCase().includes(keyword.toLowerCase())
-			) ||
-			el.ingredients.filter((obj) =>
-				obj.ingredient.toLowerCase().includes(keyword.toLowerCase())
-			).length > 0
-		);
+	if (key) {
+		if (key.length >= 3) {
+			for (const [i, element] of array.entries()) {
+				// console.log(`${i}: ${element.name.toLowerCase()}`);
+				if (
+					element.name.toLowerCase().indexOf(key) > -1 ||
+					element.description.toLowerCase().indexOf(key) > -1 ||
+					element.appliance.toLowerCase().indexOf(key) > -1 ||
+					element.ingredients.forEach((item) => {
+						if (item.ingredient.toLowerCase().indexOf(key) > -1) {
+							results.push(element);
+						}
+					}) ||
+					element.ustensils.forEach((item) => {
+						if (item.toLowerCase().indexOf(key) > -1) {
+							results.push(element);
+						}
+					})
+				) {
+					results.push(i);
+				}
+			}
+		}
+	}
+
+	results.forEach((result) => {
+		newList.push(array[result]);
 	});
-	return results;
+
+	return newList;
 };
 
 export { searchData };
