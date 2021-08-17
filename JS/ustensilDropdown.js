@@ -1,6 +1,7 @@
 const ustensilDropdown = (array) => {
 	const element = document.getElementById("ustensilDropdown");
 	const itemContainer = document.getElementById("ustItemContainer");
+	const dropdownArrow = element.childNodes[3];
 	let isActive = false;
 
 	element.addEventListener("click", () => {
@@ -13,8 +14,12 @@ const ustensilDropdown = (array) => {
 				})
 				.join("");
 			itemContainer.innerHTML = htmlString;
+			dropdownArrow.classList.remove("fa-angle-down");
+			dropdownArrow.classList.add("fa-angle-up");
 		} else {
 			itemContainer.innerHTML = "";
+			dropdownArrow.classList.remove("fa-angle-up");
+			dropdownArrow.classList.add("fa-angle-down");
 		}
 	});
 

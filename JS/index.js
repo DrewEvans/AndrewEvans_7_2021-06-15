@@ -1,29 +1,20 @@
 import {
-	recipes,
 	uniqueIngredientList,
 	uniqueUtensils,
 	uniqueAppliances,
 } from "./recipes.js";
-import dropdownFilter from "./dropdownFilter.js";
+
 import { tagSearch } from "../functions/tagSearch.js";
 import { searchData } from "../functions/searchAlgorithim.js";
-import { renderCards } from "./generateCard.js";
 import ingredientDropdown from "./ingredientDropdown.js";
 import applianceDropdown from "./applianceDropdown.js";
 import ustensilDropdown from "./ustensilDropdown.js";
 
 //DOM Elements
-const ingredientsDropDown = document.querySelector(".ingredients-dropdown");
-const utensilsDropDown = document.querySelector(".utensils-dropdown");
-const appliancesDropDown = document.querySelector(".appliances-dropdown");
 const searchBar = document.querySelector(".form-control");
-
 const dropdowns = document.querySelectorAll(".dropdown-btn");
-
 const cardContainer = document.getElementById("card-container");
 const tagContainer = document.getElementById("tagContainer");
-const closeCross = document.querySelectorAll("closeCross");
-const tags = document.getElementById("tagItem");
 
 //empty arrays
 let searchTerm = "";
