@@ -35,6 +35,16 @@ searchBar.addEventListener("keyup", (e) => {
 	} else {
 		loadRecipes();
 	}
+	if (recipesFiltered.length === 0 && searchTerm.length >= 3) {
+		console.log("inject");
+		const htmlString = `
+			<h2>
+				Aucune recette ne correspond à votre critère… vous
+				pouvez chercher « tarte aux pommes », « poisson », etc.
+			</h2>
+		`;
+		cardContainer.innerHTML = htmlString;
+	}
 });
 
 for (let i = 0; i < dropdowns.length; i++) {
